@@ -1,0 +1,18 @@
+pipeline {
+    agent any
+    stages{
+        stage('download'){
+            steps{
+                git 'https://github.com/gsureshkiran/my_javaapp.git'
+            }
+        }
+        stage('build'){
+            agent{
+                docker { image 'maven:3.8.1-adoptopenjdk-11' }
+            }
+            steps{
+                sh 'mvn package'
+            }
+        }
+    }
+}
