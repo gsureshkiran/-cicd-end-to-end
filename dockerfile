@@ -1,4 +1,7 @@
-FROM tomcat:9-jdk11-adoptopenjdk-hotspot
+FROM alpine as build
+cmd sudo apt-get install -y tomcat9
+
 WORKDIR /usr/local/tomcat/webapps
-COPY target/*.war /usr/local/tomcat/webapps/webapp.war
-RUN chmod -R 755 /usr/local/tomcat/webapps/webapp.war
+FROM alpine
+COPY --from=build /usr/local/tomcat/webapps /target/*.war
+
