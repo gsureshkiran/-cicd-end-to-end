@@ -1,0 +1,28 @@
+pipeline{
+    agent { label 'kube' }
+    stages{
+        stage('download'){
+            steps{
+                git 'https://github.com/gsureshkiran/-cicd-end-to-end.git'
+            }
+        }
+        stage('build'){
+            steps{
+                sh 'mvn package'
+            }
+        }
+        stage('image build'){
+            steps{
+                sh 'docker build -t sureshkiran/stsdevops:v1 .'
+            }
+        }
+        stage('image push'){
+            steps{
+                withCredentials([string(credentialsId: 'dockerpwd', variable: 'dockerpwd')]) {
+               sh 'docker login -u sureshkiran -p ${dockerpwd}'
+              }
+              sh 'docker push sureshkiran/stsdevops:v1'
+            }
+        }
+    }
+}
