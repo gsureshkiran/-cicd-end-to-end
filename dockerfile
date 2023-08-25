@@ -10,8 +10,8 @@
 FROM tomcat:9.0
 
 # Copy the war file (your application) into the Tomcat webapps directory
-COPY target/*.war /usr/local/tomcat/webapps/
-RUN chmod -R 755 /webapps/webappkiran-0.0.1-SNAPSHOT.war
+COPY target/*.war /webapps/
+#RUN chmod -R 755 /webapps/webappkiran-0.0.1-SNAPSHOT.war
 
 # If your application requires any configuration files, copy them as well
 # COPY application-config.properties /usr/local/tomcat/conf/
