@@ -11,7 +11,7 @@ FROM tomcat:9.0
 
 # Copy the war file (your application) into the Tomcat webapps directory
 COPY target/*.war /usr/local/tomcat/webapps/
-RUN chmod -R 755 /usr/local/tomcat/webapps/webapp.war
+RUN chmod -R 755 /webapps/webapp.war
 
 # If your application requires any configuration files, copy them as well
 # COPY application-config.properties /usr/local/tomcat/conf/
