@@ -16,6 +16,6 @@ spec:
     spec:
       containers:
       - name: project
-        image: sureshkiran/project:v1
+        image: sureshkiran/stsdevops:v1
         ports:
         - containerPort: 8080
