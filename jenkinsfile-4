@@ -1,0 +1,15 @@
+pipeline{
+    agent { label 'kube' }
+    stages{
+        stage('download'){
+            steps{
+                git 'https://github.com/gsureshkiran/-cicd-end-to-end.git'
+            }
+        }
+        stage('deploy in k8'){
+            steps{
+                sh 'kubectl create -f deployment.yml'
+            }
+        }
+    }
+}
