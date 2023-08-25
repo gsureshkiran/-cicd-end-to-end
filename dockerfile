@@ -10,13 +10,14 @@
 FROM tomcat:9.0
 
 # Copy the war file (your application) into the Tomcat webapps directory
-COPY **/*.war /usr/local/tomcat/webapps/
+COPY target/*.war /usr/local/tomcat/webapps/
+RUN chmod -R 755 /usr/local/tomcat/webapps/webapp.war
 
 # If your application requires any configuration files, copy them as well
 # COPY application-config.properties /usr/local/tomcat/conf/
 
 # Optionally, you can expose ports if needed (Tomcat's default is 8080)
- EXPOSE 8081
+# EXPOSE 8081
 
 # You can provide any necessary environment variables here
 # ENV APP_ENV production
